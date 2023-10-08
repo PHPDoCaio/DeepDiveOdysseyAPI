@@ -1,12 +1,13 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import { Database } from './database.js'
 import { routes } from './routes.js'
+import  cors  from 'cors'
 
-class App{
-    
+class App {
+
     constructor() {
         this.express = express()
+        this.express.use(cors())
 
         this.middleware()
         this.routes()
@@ -14,8 +15,8 @@ class App{
     }
 
     middleware() {
-        this.express.use(express.json({limit: '500mb'}));
-    }   
+        this.express.use(express.json({ limit: '500mb' }));
+    }
 
     routes() {
         this.express.use(routes)
